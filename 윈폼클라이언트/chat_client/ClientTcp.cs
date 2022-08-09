@@ -57,7 +57,7 @@ namespace client_tcp
             return null;
         }
 
-        public void send(byte[] sendData)
+        public void Send(byte[] sendData)
         {
             try
             {
