@@ -30,7 +30,7 @@
         {
             this.btn_close = new System.Windows.Forms.Button();
             this.서버 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.local_host_checkBox = new System.Windows.Forms.CheckBox();
             this.portNum = new System.Windows.Forms.TextBox();
             this.label_portNum = new System.Windows.Forms.Label();
             this.ipNum = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(379, 53);
+            this.btn_close.Location = new System.Drawing.Point(387, 53);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(114, 22);
             this.btn_close.TabIndex = 0;
@@ -84,7 +84,7 @@
             // 
             // 서버
             // 
-            this.서버.Controls.Add(this.checkBox1);
+            this.서버.Controls.Add(this.local_host_checkBox);
             this.서버.Controls.Add(this.portNum);
             this.서버.Controls.Add(this.label_portNum);
             this.서버.Controls.Add(this.ipNum);
@@ -97,15 +97,18 @@
             this.서버.Text = "Select 더미 클라이언트 설정";
             this.서버.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // checkBox1
+            // local_host_checkBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(269, 44);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(86, 16);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.local_host_checkBox.AutoSize = true;
+            this.local_host_checkBox.Checked = true;
+            this.local_host_checkBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.local_host_checkBox.Location = new System.Drawing.Point(269, 44);
+            this.local_host_checkBox.Name = "local_host_checkBox";
+            this.local_host_checkBox.Size = new System.Drawing.Size(81, 16);
+            this.local_host_checkBox.TabIndex = 5;
+            this.local_host_checkBox.Text = "local_host";
+            this.local_host_checkBox.UseVisualStyleBackColor = true;
+            this.local_host_checkBox.CheckedChanged += new System.EventHandler(this.loacl_host_CheckedChanged);
             // 
             // portNum
             // 
@@ -147,7 +150,7 @@
             // 
             // btn_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(379, 27);
+            this.btn_connect.Location = new System.Drawing.Point(387, 27);
             this.btn_connect.Name = "btn_connect";
             this.btn_connect.Size = new System.Drawing.Size(114, 23);
             this.btn_connect.TabIndex = 1;
@@ -478,7 +481,7 @@
         private System.Windows.Forms.Button btn_connect;
         private System.Windows.Forms.TextBox ipNum;
         private System.Windows.Forms.Label label_ipNum;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox local_host_checkBox;
         private System.Windows.Forms.TextBox portNum;
         private System.Windows.Forms.Label label_portNum;
         private System.Windows.Forms.TextBox box_textEcho;
