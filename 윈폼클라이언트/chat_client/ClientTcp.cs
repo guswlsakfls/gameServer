@@ -8,7 +8,8 @@ namespace client_tcp
     {
         public Socket Sock = null;
         public string LatestErrMsg;
-        
+
+        // sock 연결       
         public bool Connect(string ip, int port)
         {
             try
@@ -34,6 +35,7 @@ namespace client_tcp
             }
         }
 
+        // sock 데이터 받기
         public Tuple<int, byte[]> Receive()
         {
             try
@@ -57,7 +59,8 @@ namespace client_tcp
             return null;
         }
 
-        public void send(byte[] sendData)
+        // sock 데이터 보내기
+        public void Send(byte[] sendData)
         {
             try
             {
@@ -76,6 +79,7 @@ namespace client_tcp
             }
         }
 
+        // sock 닫기
         public void Close()
         {
             if (Sock != null && Sock.Connected)
@@ -84,6 +88,7 @@ namespace client_tcp
             }
         }
 
+        // sock 연결되어 있는지 확인
         public bool IsConnected() { return (Sock != null && Sock.Connected) ? true : false; }
     }
 }
