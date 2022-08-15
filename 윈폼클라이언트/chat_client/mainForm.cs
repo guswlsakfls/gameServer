@@ -35,8 +35,8 @@ namespace client_tcp
             IsNetworkThreadRunning = true;
             NetworkReadThread = new System.Threading.Thread(this.NetworkReadProcess);
             NetworkReadThread.Start();
-            NetworkSendThread = new System.Threading.Thread(this.NetworkSendProcess);
-            NetworkSendThread.Start();
+            //NetworkSendThread = new System.Threading.Thread(this.NetworkSendProcess);
+            //NetworkSendThread.Start();
 
             btn_close.Enabled = false;
 
@@ -45,7 +45,7 @@ namespace client_tcp
 
         private void btn_close_click(object sender, EventArgs e)
         {
-            
+            Network.Close();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -96,6 +96,8 @@ namespace client_tcp
         {
             string plusStr = box_textEcho.Text;
             box_log.Items.Add(plusStr);
+
+            //SendPacketQueue.Enqueue(plusStr.Tobyte);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -211,34 +213,12 @@ namespace client_tcp
                 else
                 {
                     Network.Close();
-                    box_log.Items.Add(string.Format("{0}: !!! 서버 접속 종료 !!!", DateTime.Now));
+                    Console.WriteLine("서버 접속 종료");
                 }
             }
         }
 
-        void NetworkSendProcess()
-        {
-            while (IsNetworkThreadRunning)
-            {
-                System.Threading.Thread.Sleep(1);
-
-                if (Network.IsConnected() == false)
-                {
-                    continue;
-                }
-
-                lock (((System.Collections.ICollection)SendPacketQueue).SyncRoot)
-                {
-                    if (SendPacketQueue.Count > 0)
-                    {
-                        var packet = SendPacketQueue.Dequeue();
-                        Network.Send(packet); // send 할 packet 데이터를 보낸다. 
-                    }
-                }
-            }
-        }
-
-        private void loacl_host_CheckedChanged(object sender, EventArgs e)
+        private void local_host_checkBox_CheckedChanged(object sender, EventArgs e)
         {
 
         }

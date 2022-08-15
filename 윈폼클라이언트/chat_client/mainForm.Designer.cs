@@ -74,7 +74,8 @@
             // 
             // btn_close
             // 
-            this.btn_close.Location = new System.Drawing.Point(387, 53);
+            this.btn_close.Enabled = false;
+            this.btn_close.Location = new System.Drawing.Point(379, 53);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(114, 22);
             this.btn_close.TabIndex = 0;
@@ -108,7 +109,7 @@
             this.local_host_checkBox.TabIndex = 5;
             this.local_host_checkBox.Text = "local_host";
             this.local_host_checkBox.UseVisualStyleBackColor = true;
-            this.local_host_checkBox.CheckedChanged += new System.EventHandler(this.loacl_host_CheckedChanged);
+            this.local_host_checkBox.CheckedChanged += new System.EventHandler(this.local_host_checkBox_CheckedChanged);
             // 
             // portNum
             // 
