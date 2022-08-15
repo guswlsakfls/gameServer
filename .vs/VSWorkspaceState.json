@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\윈폼클라이언트",
+    "\\윈폼클라이언트\\chat_client"
   ],
-  "SelectedNode": "\\C:\\Users\\guswl\\Source\\Repos\\guswlsakfls\\gameServer",
+  "SelectedNode": "\\윈폼클라이언트\\chat_client\\mainForm.cs",
   "PreviewInSolutionExplorer": true
 }

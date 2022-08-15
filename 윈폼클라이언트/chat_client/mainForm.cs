@@ -17,9 +17,10 @@ namespace client_tcp
         bool IsNetworkThreadRunning = false;
 
         System.Threading.Thread NetworkReadThread = null;
-
+        System.Threading.Thread NetworkSendThread = null;
         PacketBufferManager PacketBuffer = new PacketBufferManager();
         Queue<PacketData> RecvPacketQueue = new Queue<PacketData> ();
+        Queue<byte[]> SendPacketQueue = new Queue<byte[]> ();
         public mainForm()
         {
             InitializeComponent();
@@ -32,6 +33,8 @@ namespace client_tcp
             IsNetworkThreadRunning = true;
             NetworkReadThread = new System.Threading.Thread(this.NetworkReadProcess);
             NetworkReadThread.Start();
+            NetworkSendThread = new System.Threading.Thread(this.NetworkSendProcess);
+            NetworkSendThread.Start();
         }
 
         private void btn_close_click(object sender, EventArgs e)
@@ -81,6 +84,8 @@ namespace client_tcp
         {
             string plusStr = box_textEcho.Text;
             box_log.Items.Add(plusStr);
+
+            SendPacketQueue.Enqueue(plusStr.Tobyte);
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -188,7 +193,7 @@ namespace client_tcp
                         Buffer.BlockCopy(data.Array, (data.Offset + PacketHeaderSize), packet.BodyData, 0, (data.Count - PacketHeaderSize));
                         lock (((System.Collections.ICollection)RecvPacketQueue).SyncRoot)
                         {
-
+                            RecvPacketQueue.Enqueue(packet);
                         }
                     }
                 }
@@ -197,6 +202,28 @@ namespace client_tcp
                 {
                     Network.Close();
                     Console.WriteLine("서버 접속 종료");
+                }
+            }
+        }
+
+        void NetworkSendProcess()
+        {
+            while (IsNetworkThreadRunning)
+            {
+                System.Threading.Thread.Sleep(1);
+
+                if (Network.IsConnected() == false)
+                {
+                    continue;
+                }
+
+                lock (((System.Collections.ICollection)(SendPacketQueue)).SyncRoot)
+                {
+                    if (SendPacketQueue.Count > 0)
+                    {
+                        var packet = SendPacketQueue.Dequeue();
+                        Network.Send(packet);
+                    }    
                 }
             }
         }
