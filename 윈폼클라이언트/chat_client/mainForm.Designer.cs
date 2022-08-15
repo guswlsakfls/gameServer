@@ -461,6 +461,7 @@
             this.Controls.Add(this.btn_close);
             this.Name = "mainForm";
             this.Text = "chatClient";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.서버.ResumeLayout(false);
             this.서버.PerformLayout();
