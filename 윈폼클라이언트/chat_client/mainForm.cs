@@ -46,6 +46,11 @@ namespace client_tcp
         private void btn_close_click(object sender, EventArgs e)
         {
             Network.Close();
+
+            btn_close.Enabled = false;
+            btn_connect.Enabled = true;
+
+            box_log.Items.Add(string.Format("{0}: 프로그램 종료!!!!!!!!!!!!", DateTime.Now));
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
