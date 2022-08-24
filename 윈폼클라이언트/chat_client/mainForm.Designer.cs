@@ -151,7 +151,7 @@
             // 
             // btn_connect
             // 
-            this.btn_connect.Location = new System.Drawing.Point(387, 27);
+            this.btn_connect.Location = new System.Drawing.Point(379, 27);
             this.btn_connect.Name = "btn_connect";
             this.btn_connect.Size = new System.Drawing.Size(114, 23);
             this.btn_connect.TabIndex = 1;
@@ -165,6 +165,7 @@
             this.box_textEcho.Name = "box_textEcho";
             this.box_textEcho.Size = new System.Drawing.Size(361, 21);
             this.box_textEcho.TabIndex = 6;
+            this.box_textEcho.Text = "텍스트를 입력하세요";
             this.box_textEcho.TextChanged += new System.EventHandler(this.box_text);
             this.box_textEcho.Enter += new System.EventHandler(this.sendEcho_Click);
             // 
@@ -461,6 +462,7 @@
             this.Controls.Add(this.btn_close);
             this.Name = "mainForm";
             this.Text = "chatClient";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.서버.ResumeLayout(false);
             this.서버.PerformLayout();
