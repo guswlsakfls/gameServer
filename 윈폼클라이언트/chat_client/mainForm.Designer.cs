@@ -165,6 +165,7 @@
             this.box_textEcho.Name = "box_textEcho";
             this.box_textEcho.Size = new System.Drawing.Size(361, 21);
             this.box_textEcho.TabIndex = 6;
+            this.box_textEcho.Text = "텍스트를 입력하세요";
             this.box_textEcho.TextChanged += new System.EventHandler(this.box_text);
             this.box_textEcho.Enter += new System.EventHandler(this.sendEcho_Click);
             // 
